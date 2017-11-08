@@ -99,7 +99,7 @@ for qq in _fcnc:
 
     # tree-level weak decays with different charged lepton and neutrino flavour
     for qq in _fccc:
-        for ll in _lnu:
+        for ll in _lnup:
             coefficients[qq + ll] = [ 'CV_'+qq+ll, 'CS_'+qq+ll, 'CT_'+qq+ll,
                                 'CVp_'+qq+ll, 'CSp_'+qq+ll, ]
             adm[qq + ll] = adm_ddlnu

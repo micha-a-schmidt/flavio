@@ -8,7 +8,7 @@ from flavio.classes import AuxiliaryQuantity
 from flavio.config import config
 from flavio.physics.running import running
 from flavio.physics.bdecays import angular
-from flavio.physics.bdecays.wilsoncoefficients import get_wceff_fccc
+from flavio.physics.bdecays.wilsoncoefficients import get_wceff_fccc2
 from flavio.classes import Observable, Prediction
 
 
@@ -34,10 +34,10 @@ def get_ff(q2, par, B, P):
 
 def get_angularcoeff(q2, wc_obj, par, B, P, lep):
     Jlist=[ _get_angularcoeff(q2,wc_obj, par, B, P, lep, nu) for nu in ['e','mu','tau' ]]
-    J={ }
-    J['a']=sum([JJ['a'] for JJ in Jlist)
-    J['b']=sum([JJ['b'] for JJ in Jlist)
-    J['c']=sum([JJ['c'] for JJ in Jlist)
+    J={  }
+    J['a']=sum([ JJ['a'] for JJ in Jlist ])
+    J['b']=sum([ JJ['b'] for JJ in Jlist ])
+    J['c']=sum([ JJ['c'] for JJ in Jlist ])
     return J
 
 def _get_angularcoeff(q2, wc_obj, par, B, P, lep, nu):
