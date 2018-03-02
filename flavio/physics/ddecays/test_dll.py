@@ -4,7 +4,7 @@ import numpy as np
 from .. import ckm
 from math import radians
 from flavio.physics.eft import WilsonCoefficients
-from flavio.physics.bdecays.wilsoncoefficients import wctot_dict
+from flavio.physics.ddecays.wilsoncoefficients import wctot_dict
 from flavio.classes import Parameter, Observable
 from flavio.parameters import default_parameters
 import copy
@@ -35,24 +35,11 @@ wc_tau = wctot_dict(wc_obj, 'bstautau', 4.8, par)
 class TestBll(unittest.TestCase):
     def test_bsll(self):
         # just some trivial tests to see if calling the functions raises an error
-        self.assertGreater(br_lifetime_corr(0.08, -1), 0)
         self.assertEqual(len(amplitudes(par, wc, 'Bs', 'mu', 'mu')), 2)
-        # ADeltaGamma should be +1.0 in the SM
-        self.assertEqual(ADeltaGamma(par, wc, 'Bs', 'mu'), 1.0)
-        self.assertEqual(flavio.sm_prediction('ADeltaGamma(Bs->mumu)'), 1.0)
         # BR should be around 3.5e-9
         self.assertAlmostEqual(br_inst(par, wc, 'Bs', 'mu', 'mu')*1e9, 3.5, places=0)
-        # correction factor should enhance the BR by roughly 7%
-        self.assertAlmostEqual(br_timeint(par, wc, 'Bs', 'mu', 'mu')/br_inst(par, wc, 'Bs', 'mu', 'mu'), 1.07, places=2)
-        # ratio of Bs->mumu and Bs->ee BRs should be roughly given by ratio of squared masses
-        self.assertAlmostEqual(
-            br_timeint(par, wc_e, 'Bs', 'e', 'e')/br_timeint(par, wc, 'Bs', 'mu', 'mu')/par['m_e']**2*par['m_mu']**2,
-            1., places=2)
         # comparison to 1311.0903
         self.assertAlmostEqual(abs(ckm.xi('t','bs')(par))/par['Vcb'], 0.980, places=3)
-        self.assertAlmostEqual(br_timeint(par, wc, 'Bs', 'mu', 'mu')/3.65e-9, 1, places=1)
-        self.assertAlmostEqual(br_timeint(par, wc_e, 'Bs', 'e', 'e')/8.54e-14, 1, places=1)
-        self.assertAlmostEqual(br_timeint(par, wc_tau, 'Bs', 'tau', 'tau')/7.73e-7, 1, places=1)
 
     def test_bsll_classes(self):
         par_default = default_parameters.get_central_all()
@@ -63,32 +50,13 @@ class TestBll(unittest.TestCase):
     def test_bsll_lfv(self):
         # test for errors
         self.assertEqual(flavio.sm_prediction('BR(B0->emu)'), 0)
-        self.assertEqual(flavio.sm_prediction('BR(Bs->taumu)'), 0)
         self.assertEqual(flavio.sm_prediction('BR(B0->emu,mue)'), 0)
-        self.assertEqual(flavio.sm_prediction('BR(Bs->mutau,taumu)'), 0)
         wc = flavio.WilsonCoefficients()
         wc.set_initial({'C10_bdemu': 1, 'C10_bdmue': 2}, scale=4.8)
         self.assertEqual(flavio.np_prediction('BR(B0->mue)', wc)
                         /flavio.np_prediction('BR(B0->emu)', wc), 4)
         self.assertEqual(flavio.np_prediction('BR(B0->emu,mue)', wc)
                         /flavio.np_prediction('BR(B0->emu)', wc), 5)
-
-    def test_EffectiveLifetimes(self):
-        # In this test we trivially check that the prefactors in (22) and (28) of arXiv:1204.1737 are the same
-
-        ys     = .5*par['DeltaGamma/Gamma_Bs']
-        tau_Bs = par['tau_Bs']
-
-        wc_dict = {'e': wc_e, 'mu': wc, 'tau': wc_tau}
-
-        for l in ['e', 'mu', 'tau']:
-            ADG    = ADeltaGamma(par, wc_dict[l], 'Bs', l)
-            tau    = tau_ll(wc_dict[l], par, 'Bs', l)
-
-            prefactor1 = br_lifetime_corr(ys, ADG)        # eq. (22) of arXiv:1204.1737
-            prefactor2 = 2.  - (1.-ys**2) * tau / tau_Bs  # eq. (28) of arXiv:1204.1737
-
-            self.assertAlmostEqual(prefactor1, prefactor2, places=8)
 
     def test_BR_Bs_to_mumu(self):
         # cross check formula with 2nd implementation
@@ -130,23 +98,6 @@ class TestBll(unittest.TestCase):
 
             return (GF**2 * alphaem**2 * mB)/(16. * math.pi**3) * math.sqrt(1.-4.*mmu**2/mB**2) *  C10SM**2 * abs(xi_ts_tb)**2 * tauB * fB**2 * mmu**2 * (abs(P)**2 + abs(S)**2)
 
-        def ADG_Amsterdam(par, wc):
-            P, S = amplitudes_Amsterdam_Bs_mumu(par, wc)
-            return ((P**2).real - (S**2).real)/(abs(P)**2 + abs(S)**2)
-
-        def corr_factor(par, wc):
-            ADG  = ADG_Amsterdam(par, wc)
-            y    = par['DeltaGamma/Gamma_Bs']/2.
-            corr = (1 - y**2)/(1 + ADG*y)
-
-            return corr
-
-        def BR_Amsterdam_Bs_mumu(par, wc):
-            BR_inst = BR_inst_Amsterdam_Bs_mumu(par, wc)
-            corr    = corr_factor(par, wc)
-
-            return BR_inst / corr
-
         # define function that calculates the BR in both implementations
         def BR(c10, c10p, cS, cSp, cP, cPp):
             list_wc = {'C10_bsmumu' :  c10,
@@ -161,7 +112,7 @@ class TestBll(unittest.TestCase):
             wc.set_initial(list_wc, scale=160 )
 
             BR_flavio    = flavio.np_prediction('BR(Bs->mumu)', wc)
-            BR_Amsterdam = BR_Amsterdam_Bs_mumu(par, list_wc)
+            BR_Amsterdam = BR_inst_Amsterdam_Bs_mumu(par, list_wc)
 
             return {'flavio': BR_flavio, 'Amsterdam': BR_Amsterdam}
 

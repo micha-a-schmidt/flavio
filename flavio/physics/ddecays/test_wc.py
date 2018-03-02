@@ -47,20 +47,3 @@ class TestBWilson(unittest.TestCase):
         wc_low_array[7] = wc_low_array[7] + np.dot(zi, wc_low_array[:6]) # c8eff
         np.testing.assert_almost_equal(wc_low_array[:15], wc_low_correct, decimal=2)
 
-    def test_C78p(self):
-        wc_obj = eft.WilsonCoefficients()
-        wc_low = wilsoncoefficients.wctot_dict(wc_obj, 'bsmumu', 4.2, par)
-        ms = flavio.physics.running.running.get_ms(par, 4.2, nf_out=5)
-        mb = flavio.physics.running.running.get_mb(par, 4.2, nf_out=5)
-        self.assertAlmostEqual(wc_low['C7p_bs']/wc_low['C7_bs'], ms/mb)
-        self.assertAlmostEqual(wc_low['C8p_bs']/wc_low['C8_bs'], ms/mb)
-
-    def test_clnu(self):
-        par_dict = flavio.default_parameters.get_central_all()
-        par_dict['alpha_s'] = 0.1184
-        par_dict['alpha_e'] = 1/127.925
-        par_dict['s2w']  = 0.2315
-        par_dict['m_t']  = 173.3
-        cl = wilsoncoefficients.CL_SM(par_dict)
-        # comparing the central value of X_t to (4.2) of 1009.0947
-        self.assertAlmostEqual(-cl*par_dict['s2w']/1.469, 1, delta=0.01)

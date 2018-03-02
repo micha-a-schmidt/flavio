@@ -8,7 +8,7 @@ from flavio.physics.running import running
 from flavio.physics.bdecays.common import lambda_K # Källen lambda function
 from flavio.classes import Observable, Prediction
 from flavio.config import config
-from flavio.physics.bdecays.wilsoncoefficients import wctot_dict #### NEEDS WORK
+from flavio.physics.ddecays.wilsoncoefficients import wctot_dict 
 
 
 # def br_lifetime_corr(y, ADeltaGamma):
