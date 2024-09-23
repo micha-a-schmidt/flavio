@@ -49,7 +49,6 @@ Contributors (in alphabetical order):
 - Matěj Hudec
 - Matthew Kirk
 - Jonathan Kriewald
-- Girish Kumar
 - Jacky Kumar
 - Christoph Langenbruch
 - Christoph Niehoff
@@ -58,8 +57,6 @@ Contributors (in alphabetical order):
 - Méril Reboud
 - Stefanie Reichert
 - Niladri Sahoo
-- Jakub Šalko
-- Michael Schmidt
 - Aleks Smolkovič
 - Peter Stangl
 - Olcyr Sumensari

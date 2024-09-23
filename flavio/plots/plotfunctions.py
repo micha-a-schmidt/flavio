@@ -20,25 +20,28 @@ from flavio.plots.colors import lighten_color, get_color
 def error_budget_pie(err_dict, other_cutoff=0.03):
     """Pie chart of an observable's error budget.
 
-    The wedges are labelled with the relative error contributions and the
-    names of the parameters. The area of each wedge is proportional to the
-    squared error contribution such that the total area of the pie
-    corresponds to the squared total error.
-
     Parameters:
 
-    - `err_dict`: Dictionary as returned by `flavio.sm_error_budget`.
-    - `other_cutoff`: If an individual squared error contribution divided by the
-    squared total error is smaller than this number, it is lumped under "other".
-    Defaults to 0.03.
+    - `err_dict`: Dictionary as return from `flavio.sm_error_budget`
+    - `other_cutoff`: If an individual error contribution divided by the total
+      error is smaller than this number, it is lumped under "other". Defaults
+      to 0.03.
+
+    Note that for uncorrelated parameters, the total uncertainty is the squared
+    sum of the individual uncertainties, so the relative size of the wedges does
+    not correspond to the relative contribution to the total uncertainty.
+
+    If the uncertainties of individual parameters are correlated, the total
+    uncertainty can be larger or smaller than the squared sum of the individual
+    uncertainties, so the representation can be misleading.
     """
-    var_tot = sum(v**2 for v in err_dict.values()) # total variance from sum of squared individual errors
+    err_tot = sum(err_dict.values()) # linear sum of individual errors
     err_dict_sorted = OrderedDict(sorted(err_dict.items(), key=lambda t: -t[1]))
     labels = []
     fracs = []
     small_frac = []
     for key, value in err_dict_sorted.items():
-        frac = value**2/var_tot # variance fraction
+        frac = value/err_tot
         if frac > other_cutoff:
             if isinstance(key, str):
                 try:
@@ -54,10 +57,15 @@ def error_budget_pie(err_dict, other_cutoff=0.03):
             small_frac.append(frac)
     if small_frac:
         labels.append('other')
-        fracs.append(sum(small_frac))
+        # the fraction for the "other" errors is obtained by adding them in quadrature
+        fracs.append(np.sqrt(np.sum(np.array(small_frac)**2)))
+    # initially, the fractions had been calculated assuming that they add to
+    # one, but adding the "other" errors in quadrature changed that - correct
+    # all the fractions to account for this
+    corr = sum(fracs)
+    fracs = [f/corr for f in fracs]
     def my_autopct(pct):
-        # use individual errors as labels
-        return r'{p:.2g}\%'.format(p=np.sqrt(100*pct*var_tot))
+        return r'{p:.2g}\%'.format(p=pct*err_tot)
     plt.axis('equal')
     return plt.pie(fracs,
         labels=labels,
@@ -146,10 +154,10 @@ def diff_plot_th_err(obs_name, x_min, x_max, wc=None, steps=100,
     x_err_arr[-1] = x_arr[-1]
     if wc is None:
         wc = flavio.physics.eft._wc_sm # SM Wilson coefficients
-        obs_err_arr = [flavio.sm_uncertainty(obs_name, x, N=N, threads=threads) for x in x_err_arr]
+        obs_err_arr = [flavio.sm_uncertainty(obs_name, x, threads=threads) for x in x_err_arr]
         obs_arr = [flavio.sm_prediction(obs_name, x) for x in x_arr]
     else:
-        obs_err_arr = [flavio.np_uncertainty(obs_name, wc, x, N=N, threads=threads) for x in x_err_arr]
+        obs_err_arr = [flavio.np_uncertainty(obs_name, wc, x, threads=threads) for x in x_err_arr]
         obs_arr = [flavio.np_prediction(obs_name, wc, x) for x in x_arr]
     ax = plt.gca()
     plot_args = plot_args or {}
@@ -500,11 +508,8 @@ def density_contour(x, y, covariance_factor=None, n_bins=None, n_sigma=(1, 2),
     return contour(**data)
 
 
-def likelihood_contour_data(
-        log_likelihood,
-        x_min, x_max, y_min, y_max, *,
-        xscale='linear', yscale='linear',
-        n_sigma=1, steps=20, threads=1, pool=None):
+def likelihood_contour_data(log_likelihood, x_min, x_max, y_min, y_max,
+              n_sigma=1, steps=20, threads=1, pool=None):
     r"""Generate data required to plot coloured confidence contours (or bands)
     given a log likelihood function.
 
@@ -513,7 +518,6 @@ def likelihood_contour_data(
     - `log_likelihood`: function returning the logarithm of the likelihood.
       Can e.g. be the method of the same name of a FastFit instance.
     - `x_min`, `x_max`, `y_min`, `y_max`: data boundaries
-    - `xscale`, `yscale`: `linear` (default) or `log` scale
     - `n_sigma`: plot confidence level corresponding to this number of standard
       deviations. Either a number (defaults to 1) or a tuple to plot several
       contours.
@@ -525,22 +529,8 @@ def likelihood_contour_data(
     implementation, e.g. from `multiprocess` or `schwimmbad`). Overrides the
     `threads` argument.
     """
-    if xscale == 'linear':
-        _x = np.linspace(x_min, x_max, steps)
-    elif xscale == 'log':
-        if x_min <= 0 or x_max <= 0:
-            raise ValueError("`x_min` and `x_max` have to be positive if `xscale` is set to `log`.")
-        _x = np.logspace(np.log10(x_min), np.log10(x_max), steps)
-    else:
-        raise ValueError("`xscale` must be 'linear' or 'log'.")
-    if yscale == 'linear':
-        _y = np.linspace(y_min, y_max, steps)
-    elif yscale == 'log':
-        if y_min <= 0 or y_max <= 0:
-            raise ValueError("`y_min` and `y_max` have to be positive if `yscale` is set to `log`.")
-        _y = np.logspace(np.log10(y_min), np.log10(y_max), steps)
-    else:
-        raise ValueError("`yscale` must be 'linear' or 'log'.")
+    _x = np.linspace(x_min, x_max, steps)
+    _y = np.linspace(y_min, y_max, steps)
     x, y = np.meshgrid(_x, _y)
     if threads == 1:
         @np.vectorize
@@ -611,7 +601,7 @@ def band_plot(log_likelihood, x_min, x_max, y_min, y_max,
     if 'pre_calculated_z' not in kwargs:
         contour_kwargs = likelihood_contour_data(log_likelihood,
                       x_min, x_max, y_min, y_max,
-                      n_sigma=n_sigma, steps=steps, **data_kwargs)
+                      n_sigma, steps, **data_kwargs)
     else:
         contour_kwargs = {}
         nx, ny = kwargs['pre_calculated_z'].shape

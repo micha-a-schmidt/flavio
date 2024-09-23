@@ -4,7 +4,6 @@ from flavio.physics.bdecays.formfactors import hqet
 from flavio.physics.bdecays.formfactors import common
 from flavio.classes import AuxiliaryQuantity
 from flavio.physics.running import running
-from flavio.physics.common import lambda_K
 
 process_dict = {}
 process_dict['B->D*'] = {'B': 'B0', 'V': 'D*+', 'q': 'b->c'}
@@ -13,11 +12,7 @@ process_dict['B->D*'] = {'B': 'B0', 'V': 'D*+', 'q': 'b->c'}
 def h_to_A(mB, mV, h, q2):
     """Convert HQET form factors to the standard basis.
 
-    See e.g. arXiv:1309.0301, eqs. (38), (39) but notice that we use the
-    convention of arXiv:1703.05330 for h_T3, which differs by a factor -2
-    from the one in arXiv:1309.0301 (see Eq. (11e) in arXiv:1703.05330 and
-    Eq. (46b) in arXiv:1309.0301).
-    """
+    See e.g. arXiv:1309.0301, eqs. (38), (39)"""
     ff = {}
     pre = 1 / 2 / sqrt(mB * mV)
     ff['V'] = pre * (mB + mV) * h['V']
@@ -30,7 +25,7 @@ def h_to_A(mB, mV, h, q2):
     ff['T2'] = pre * (((mB + mV)**2 - q2) / (mB + mV) * h['T1']
                       - ((mB - mV)**2 - q2) / (mB - mV) * h['T2'])
     ff['T3'] = pre * ((mB - mV) * h['T1'] - (mB + mV) * h['T2']
-                      + (mB**2 - mV**2) / mB * h['T3']) # h_T3 as in arXiv:1703.05330
+                      - 2 * (mB**2 - mV**2) / mB * h['T3'])
     # conversion from A_1, A_2 to A_12
     ff['A12'] = ((ff['A1'] * (mB + mV)**2 * (mB**2 - mV**2 - q2)
                  - ff['A2'] * (mB**4 + (mV**2 - q2)**2
@@ -39,8 +34,9 @@ def h_to_A(mB, mV, h, q2):
     del ff['A2']
     # conversion from T_2, T_3 to T_23
     ff['T23'] = ((mB**2 - mV**2) * (mB**2 + 3 * mV**2 - q2) * ff['T2']
-                 - lambda_K(mB**2, mV**2, q2) * ff['T3']
-                ) / (8 * mB * (mB - mV) * mV**2)
+                 - (mB**4 + (mV**2 - q2)**2
+                 - 2 * mB**2 * (mV**2 + q2)) * ff['T3']
+                 ) / (8 * mB * (mB - mV) * mV**2)
     del ff['T3']
     return ff
 
@@ -85,9 +81,7 @@ def ff(process, q2, par, scale, order_z=3, order_z_slp=2, order_z_sslp=1):
                     + epsc * (L[2] - L[5] * (w - 1)/(w + 1))
                     + epsb * (L[1] - L[4] * (w - 1)/(w + 1))
                     + epsc**2 * (ell[2] - ell[5] * (w - 1)/(w + 1)))
-    h['A2'] = xi * (ash * CA2
-                    + epsc * (L[3] + L[6])
-                    + epsc**2 * (ell[3] + ell[6]))
+    h['A2'] = xi * (ash * CA2 + epsc * (L[3] + L[6]))
     h['A3'] = xi * (1 + ash * (CA1 + CA3)
                     + epsc * (L[2] - L[3] + L[6] - L[5])
                     + epsb * (L[1] - L[4])
@@ -99,8 +93,8 @@ def ff(process, q2, par, scale, order_z=3, order_z_slp=2, order_z_sslp=1):
     h['T2'] = xi * (ash * (w + 1)/2 * (CT2 + CT3)
                     + epsc * L[5]
                     - epsb * L[4]
-                    + epsc**2 * ell[5])
+                    + epsc * ell[5])
     h['T3'] = xi * (ash * CT2
                     + epsc * (L[6] - L[3])
-                    + epsc**2 * (ell[6] - ell[3]))
+                    + epsc * (ell[6] - ell[3]))
     return h_to_A(mB, mV, h, q2)

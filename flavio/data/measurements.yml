@@ -30,18 +30,6 @@ HFLAV rad 2018:
     BR(B+->enu): < 0.98e-6 @ 90% CL
     BR(B+->munu): < 1.0e-6 @ 90% CL
 
-Belle B->munu 2020:
-  experiment: Belle
-  inspire: Belle:2019iji
-  values:
-    BR(B+->munu): (5.3 ± 2.0 ± 0.9) e-7
-
-Belle B->enu 2007: # this is the same as HFLAV rad 2018 for electron
-  experiment: Belle
-  inspire: Belle:2006tbq
-  values:
-    BR(B+->enu): < 9.8e-7 @ 90% CL
-
 PDG B->taunu 2018:
   experiment: PDG
   url: http://pdglive.lbl.gov/BranchingRatio.action?desig=184&parCode=S041
@@ -122,15 +110,6 @@ HFAG UT summer 2015:
   values:
     S_psiphi: 0.033 ± 0.033 # NB this is actually -phi_s^ccbars
     S_psiK: 0.679 ± 0.020 # NB this is actually an average of several b->ccbard modes
-
-
-HFLAV UT 2023:
-  experiment: HFLAV
-  inspire: HeavyFlavorAveragingGroup:2022wzx
-  values:
-    S_psiphi: 0.049 ± 0.019
-    S_psiK: 0.699 ± 0.017
-
 
 HFAG K*gamma summer 2015:
   experiment: HFAG
@@ -3079,234 +3058,6 @@ Belle B+->pilnu 2013:
                [ 0.021,  0.025,  0.042,  0.035,  0.026, -0.131,  1.   ]]
 
 
-HFLAV B0->pilnu 2021:
-  experiment: HFLAV
-  inspire: HeavyFlavorAveragingGroup:2022wzx
-  values:
-  - name: <BR>(B0->pilnu)
-    q2min: 0
-    q2max: 2
-    value: 14.4 +- 1.4 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 2
-    q2max: 4
-    value: 14.28 +- 0.92 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 4
-    q2max: 6
-    value: 13.4 +- 0.78 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 6
-    q2max: 8
-    value: 15.12 +- 0.86 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 8
-    q2max: 10
-    value: 12.88 +- 0.86 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 10
-    q2max: 12
-    value: 14.34 +- 0.92 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 12
-    q2max: 14
-    value: 13.34 +- 0.94 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 14
-    q2max: 16
-    value: 12.66 +- 0.96 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 16
-    q2max: 18
-    value: 12.4 +- 0.88 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 18
-    q2max: 20
-    value: 8.64 +- 0.86 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 20
-    q2max: 22
-    value: 8.5 +- 0.82 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 22
-    q2max: 24
-    value: 6.8 +- 0.84 e-6
-  - name: <BR>(B0->pilnu)
-    q2min: 24
-    q2max: 26.4
-    value: 2.808 +- 0.624 e-6
-  correlation:
-  - - 1.0
-    - 0.036
-    - 0.307
-    - 0.268
-    - 0.26
-    - 0.293
-    - 0.232
-    - 0.288
-    - 0.284
-    - 0.258
-    - 0.255
-    - 0.261
-    - 0.161
-  - - 0.036
-    - 1.0
-    - -0.005
-    - 0.362
-    - 0.224
-    - 0.253
-    - 0.209
-    - 0.214
-    - 0.214
-    - 0.175
-    - 0.188
-    - 0.173
-    - 0.121
-  - - 0.307
-    - -0.005
-    - 1.0
-    - -0.034
-    - 0.347
-    - 0.245
-    - 0.239
-    - 0.22
-    - 0.23
-    - 0.19
-    - 0.195
-    - 0.182
-    - 0.134
-  - - 0.268
-    - 0.362
-    - -0.034
-    - 1.0
-    - 0.131
-    - 0.4
-    - 0.301
-    - 0.29
-    - 0.286
-    - 0.226
-    - 0.215
-    - 0.215
-    - 0.131
-  - - 0.26
-    - 0.224
-    - 0.347
-    - 0.131
-    - 1.0
-    - 0.078
-    - 0.376
-    - 0.256
-    - 0.287
-    - 0.232
-    - 0.219
-    - 0.228
-    - 0.154
-  - - 0.293
-    - 0.253
-    - 0.245
-    - 0.4
-    - 0.078
-    - 1.0
-    - 0.195
-    - 0.347
-    - 0.316
-    - 0.263
-    - 0.246
-    - 0.251
-    - 0.165
-  - - 0.232
-    - 0.209
-    - 0.239
-    - 0.301
-    - 0.376
-    - 0.195
-    - 1.0
-    - 0.032
-    - 0.295
-    - 0.193
-    - 0.204
-    - 0.199
-    - 0.126
-  - - 0.288
-    - 0.214
-    - 0.22
-    - 0.29
-    - 0.256
-    - 0.347
-    - 0.032
-    - 1.0
-    - 0.244
-    - 0.3
-    - 0.204
-    - 0.231
-    - 0.147
-  - - 0.284
-    - 0.214
-    - 0.23
-    - 0.286
-    - 0.287
-    - 0.316
-    - 0.295
-    - 0.244
-    - 1.0
-    - 0.088
-    - 0.238
-    - 0.221
-    - 0.149
-  - - 0.258
-    - 0.175
-    - 0.19
-    - 0.226
-    - 0.232
-    - 0.263
-    - 0.193
-    - 0.3
-    - 0.088
-    - 1.0
-    - 0.15
-    - 0.221
-    - 0.133
-  - - 0.255
-    - 0.188
-    - 0.195
-    - 0.215
-    - 0.219
-    - 0.246
-    - 0.204
-    - 0.204
-    - 0.238
-    - 0.15
-    - 1.0
-    - 0.096
-    - 0.107
-  - - 0.261
-    - 0.173
-    - 0.182
-    - 0.215
-    - 0.228
-    - 0.251
-    - 0.199
-    - 0.231
-    - 0.221
-    - 0.221
-    - 0.096
-    - 1.0
-    - -0.027
-  - - 0.161
-    - 0.121
-    - 0.134
-    - 0.131
-    - 0.154
-    - 0.165
-    - 0.126
-    - 0.147
-    - 0.149
-    - 0.133
-    - 0.107
-    - -0.027
-    - 1.0
-
-
 Belle B0->rholnu 2013:
   experiment: Belle
   inspire: Sibidanov:2013rkk
@@ -3493,231 +3244,6 @@ BaBar B->omegalnu 2012:
                 [-0.053,-0.233,1.,0.174,0.063],
                 [-0.023,-0.149,0.174,1.,-0.009],
                 [-0.199,0.109,0.063,-0.009,1.]]
-
-
-BPR combination B->omegalnu 2021:
-   experiment: BPR
-   inspire: Bernlochner:2021rel
-   values:
-   - name: <BR>(B+->omegalnu)
-     q2min: 0
-     q2max: 4
-     value: 0.15 +- 0.046 e-4
-   - name: <BR>(B+->omegalnu)
-     q2min: 4
-     q2max: 8
-     value: 0.181 +- 0.035 e-4
-   - name: <BR>(B+->omegalnu)
-     q2min: 8
-     q2max: 10
-     value: 0.147 +- 0.028 e-4
-   - name: <BR>(B+->omegalnu)
-     q2min: 10
-     q2max: 12
-     value: 0.171 +- 0.029 e-4
-   - name: <BR>(B+->omegalnu)
-     q2min: 12
-     q2max: 21
-     value: 0.497 +- 0.09 e-4
-   correlation:
-   - - 1.0
-     - -0.15
-     - 0.08
-     - 0.04
-     - 0.06
-   - - -0.15
-     - 1.0
-     - 0.09
-     - 0.09
-     - 0.15
-   - - 0.08
-     - 0.09
-     - 1.0
-     - -0.01
-     - 0.12
-   - - 0.04
-     - 0.09
-     - -0.01
-     - 1.0
-     - 0.15
-   - - 0.06
-     - 0.15
-     - 0.12
-     - 0.15
-     - 1.0
-
-
-BPR combination B->rholnu 2021:
-   experiment: BPR
-   inspire: Bernlochner:2021rel
-   values:
-   - name: <BR>(B+->rholnu)
-     q2min: 0
-     q2max: 2
-     value: 0.077 +- 0.031 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 2
-     q2max: 4
-     value: 0.105 +- 0.03 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 4
-     q2max: 6
-     value: 0.133 +- 0.032 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 6
-     q2max: 8
-     value: 0.16 +- 0.033 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 8
-     q2max: 10
-     value: 0.119 +- 0.028 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 10
-     q2max: 12
-     value: 0.166 +- 0.032 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 12
-     q2max: 14
-     value: 0.167 +- 0.032 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 14
-     q2max: 16
-     value: 0.163 +- 0.031 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 16
-     q2max: 18
-     value: 0.132 +- 0.028 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 18
-     q2max: 20
-     value: 0.11 +- 0.026 e-4
-   - name: <BR>(B+->rholnu)
-     q2min: 20
-     q2max: 22
-     value: 0.017 +- 0.016 e-4
-   correlation:
-   - - 1.0
-     - -0.3
-     - 0.03
-     - 0.01
-     - 0.09
-     - 0.09
-     - 0.09
-     - 0.09
-     - 0.08
-     - 0.08
-     - 0.02
-   - - -0.3
-     - 1.0
-     - -0.03
-     - 0.09
-     - 0.11
-     - 0.12
-     - 0.12
-     - 0.12
-     - 0.11
-     - 0.1
-     - 0.02
-   - - 0.03
-     - -0.03
-     - 1.0
-     - -0.18
-     - 0.13
-     - 0.13
-     - 0.15
-     - 0.14
-     - 0.13
-     - 0.12
-     - 0.03
-   - - 0.01
-     - 0.09
-     - -0.18
-     - 1.0
-     - 0.06
-     - 0.18
-     - 0.18
-     - 0.18
-     - 0.16
-     - 0.14
-     - 0.04
-   - - 0.09
-     - 0.11
-     - 0.13
-     - 0.06
-     - 1.0
-     - -0.21
-     - 0.05
-     - 0.04
-     - 0.12
-     - 0.1
-     - 0.03
-   - - 0.09
-     - 0.12
-     - 0.13
-     - 0.18
-     - -0.21
-     - 1.0
-     - -0.0
-     - 0.07
-     - 0.15
-     - 0.13
-     - 0.04
-   - - 0.09
-     - 0.12
-     - 0.15
-     - 0.18
-     - 0.05
-     - -0.0
-     - 1.0
-     - -0.16
-     - 0.14
-     - 0.12
-     - 0.04
-   - - 0.09
-     - 0.12
-     - 0.14
-     - 0.18
-     - 0.04
-     - 0.07
-     - -0.16
-     - 1.0
-     - 0.1
-     - 0.14
-     - 0.05
-   - - 0.08
-     - 0.11
-     - 0.13
-     - 0.16
-     - 0.12
-     - 0.15
-     - 0.14
-     - 0.1
-     - 1.0
-     - -0.27
-     - -0.11
-   - - 0.08
-     - 0.1
-     - 0.12
-     - 0.14
-     - 0.1
-     - 0.13
-     - 0.12
-     - 0.14
-     - -0.27
-     - 1.0
-     - -0.13
-   - - 0.02
-     - 0.02
-     - 0.03
-     - 0.04
-     - 0.03
-     - 0.04
-     - 0.04
-     - 0.05
-     - -0.11
-     - -0.13
-     - 1.0
-
 
 LHCb B+->Kmumu BR 2014:
   experiment: LHCb
@@ -4643,34 +4169,6 @@ PDG 2015:
     BR(K+->pienu): (5.07±0.04)1e-2
     Gamma(pi+->munu): (2.52809±0.00050)1e-17
 
-# When updating Gamma(pi+->munu) or BR(K+->munu),
-# RKpi(P+->munu) under "CKM ratio measurements"
-# should be updated as well!
-PDG 2022:
-  experiment: PDG
-  inspire: ParticleDataGroup:2022pth
-  values:
-    BR(pi+->enu): (1.230±0.004)1e-4
-    BR(K+->munu): (63.56±0.11)1e-2
-    Remu(K+->lnu): 2.488±0.009e-5
-    BR(KL->pimunu): (27.04±0.07)1e-2
-    BR(KL->pienu): (40.55±0.11)1e-2
-    BR(K+->pimunu): (3.352±0.033)1e-2
-    BR(K+->pienu): (5.07±0.04)1e-2
-    Gamma(pi+->munu): (2.52809±0.00050)1e-17
-
-KLOE-2 KS->pimunu 2019:
-  experiment: KLOE-2
-  inspire: KLOE-2:2019rev
-  values:
-    BR(KS->pimunu): (4.56±0.20)1e-4
-
-KLOE-2 KS->pienu 2022:
-  experiment: KLOE-2
-  inspire: KLOE-2:2022dot
-  values:
-    BR(KS->pienu): (7.153±0.057)1e-4
-
 PiENu pi->enu 2015:
   experiment: PiENu
   inspire: Aguilar-Arevalo:2015cdf
@@ -4970,20 +4468,6 @@ LHCb RD* 2017:
   inspire: Aaij:2017uff
   values:
     Rtaumu(B->D*lnu): 0.291 ± 0.019 ± 0.026 ± 0.013
-
-LHCb RD* 2023:
-  experiment: LHCb
-  inspire: LHCb:2023cjr
-  values:
-    Rtaumu(B->D*lnu): 0.247 ± 0.015 ± 0.015 ± 0.012
-
-LHCb RD RD* 2022:
-    experiment: LHCb
-    inspire: LHCb:2023zxo
-    values:
-        Rtaumu(B->Dlnu): 0.441 +- 0.060 +- 0.066
-        Rtaumu(B->D*lnu): 0.281 +- 0.018 +- 0.024
-    correlation: -0.43
 
 CMS Bs->mumu 2013:
   experiment: CMS
@@ -7892,12 +7376,6 @@ K+->pinunu NA62 2019:
   url: https://indico.cern.ch/event/846814/attachments/1903630/3161337/CERN_seminar_23_09_2019.pdf
   values:
     BR(K+->pinunu): 0.47 + 0.72 - 0.47 e-10
-
-K+->pinunu NA62 2021:
-  experiment: NA62
-  inspire: NA62:2021zjw
-  values:
-    BR(K+->pinunu): 1.06 + 0.40 - 0.34 +- 0.09 e-10
 
 KL->pinunu KOTO 2018:
   experiment: KOTO
@@ -11419,9 +10897,9 @@ CMS Bs->mumu effective lifetime 2022:
 
 Bc lifetime:
   experiment: PDG
-  inspire: ParticleDataGroup:2022pth
+  inspire: Tanabashi:2018oca
   values:
-    tau_Bc: (7.748 ± 0.137) 1e11
+    tau_Bc: (7.704 ± 0.137) 1e11
 
 
 Belle RK* 2019:
@@ -12646,25 +12124,6 @@ Ft(0+) Hardy/Towner 2014:
     Ft(62Ga): 4.6664 ± 0.0102 1e+27  # 3071.5 ± 6.7 s
     Ft(74Rb): 4.6733 ± 0.0167 1e+27  # 3076.0 ± 11.0 s
 
-Ft(0+) Hardy/Towner 2020:
-  experiment: various
-  inspire: Hardy:2020qwl
-  values:
-    Ft(10C): 4.6728 ± 0.0067 1e+27  # 3075.7 ± 4.4 s
-    Ft(14O): 4.6645 ± 0.0029 1e+27  # 3070.2 ± 1.9 s
-    Ft(22Mg): 4.6736 ± 0.0106 1e+27  # 3076.2 ± 7.0 s
-    Ft(26mAl): 4.6678 ± 0.0017 1e+27  # 3072.4 ± 1.1 s
-    Ft(34Cl): 4.6666 ± 0.0027 1e+27  # 3071.6 ± 1.8 s
-    Ft(34Ar): 4.6719 ± 0.0047 1e+27  # 3075.1 ± 3.1 s
-    Ft(38mK): 4.6686 ± 0.003 1e+27  # 3072.9 ± 2.0 s
-    Ft(38Ca): 4.6760 ± 0.0094 1e+27  # 3077.8 ± 6.2 s
-    Ft(42Sc): 4.6667 ± 0.0030 1e+27  # 3071.7 ± 2.0 s
-    Ft(46V): 4.6707 ± 0.003 1e+27  # 3074.3 ± 2.0 s
-    Ft(50Mn): 4.6658 ± 0.0024 1e+27  # 3071.1 ± 1.6 s
-    Ft(54Co): 4.6648 ± 0.0036 1e+27  # 3070.4 ± 2.5 s
-    Ft(62Ga): 4.6678 ± 0.0102 1e+27  # 3072.4 ± 6.7 s
-    Ft(74Rb): 4.6748 ± 0.0167 1e+27  # 3077.0 ± 11.0 s
-
 Neutron averages GACS 2018 1:
   inspire: Gonzalez-Alonso:2018omy
   description: Averages in table 7 of the paper by Gonzalez-Alonso et al.
@@ -12761,28 +12220,6 @@ PDG 2018 D->Plnu:
     BR(D+->pienu): (3.72 ± 0.17) 1e-3
     BR(D+->Kenu): (8.73 ± 0.10) 1e-2
     BR(D+->Kmunu): (8.74 ± 0.19) 1e-2
-
-PDG 2022 D->lnu:
-  inspire: ParticleDataGroup:2022pth
-  values:
-    BR(D+->enu): < 8.8e-6 @ 90% CL
-    BR(D+->munu): (3.74 ± 0.17) 1e-4
-    BR(D+->taunu): (1.20 ± 0.27) 1e-3
-    BR(Ds->enu): < 8.3e-5 @ 90% CL
-    BR(Ds->munu): (5.43 ± 0.15) 1e-3
-    BR(Ds->taunu): (5.32 ± 0.11) 1e-2
-
-PDG 2022 D->Plnu:
-  inspire: ParticleDataGroup:2022pth
-  values:
-    BR(D0->pienu): (2.91 ± 0.04) 1e-3
-    BR(D0->pimunu): (2.67 ± 0.12) 1e-3
-    BR(D0->Kenu): (3.549 ± 0.026) 1e-2
-    BR(D0->Kmunu): (3.41 ± 0.04) 1e-2
-    BR(D+->pienu): (3.72 ± 0.17) 1e-3
-    BR(D+->pimunu): (3.50 ± 0.15) 1e-3
-    BR(D+->Kenu): (8.72 ± 0.09) 1e-2
-    BR(D+->Kmunu): (8.76 ± 0.19) 1e-2
 
 BESIII D0->Kenu 2015:
   observables:
@@ -22863,32 +22300,3 @@ CMS pp->munu 2022:
       counts_total: 0.0
       distribution: gamma_counting_process
       scale_factor: 15181.392014563447
-
-Belle B+->pi+ee 2008:
-  experiment: Belle
-  inspire: Belle:2008tjs
-  values:
-    BR_Belle(B+->piee): 1.5 +3.5-2.5 ± 0.1 ± 0.8 1e-8
-
-LHCb B->pimumu 2015:
-  experiment: LHCb
-  inspire: LHCb:2015hsa
-  values:
-    - name: <dBR/dq2>(B+->pimumu)
-      q2min: 2
-      q2max: 4
-      value: 0.62 +0.39-0.33 ± 0.02 1e-9
-    - name: <dBR/dq2>(B+->pimumu)
-      q2min: 4
-      q2max: 6
-      value: 0.85 +0.32-0.27 ± 0.02 1e-9
-    - name: <dBR/dq2>(B+->pimumu)
-      q2min: 15
-      q2max: 22
-      value: 0.47 +0.12-0.10 ± 0.01 1e-9
-
-LHCb Bs->K*mumu 2018:
-   experiment: LHCb
-   inspire: LHCb:2018rym
-   values:
-     BR_LHCb(Bs->K*0mumu): 2.9 ± 1.0 ± 0.2 ± 0.3 1e-8

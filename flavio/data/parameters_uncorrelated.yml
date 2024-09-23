@@ -23,25 +23,18 @@
 
 # Coupling constants
 
-GF: 1.1663788(6)e-5  # PDG 2023 Review Sec. 1
-alpha_e: 0.00781549(55) # = 1/127.951(9) PDG 2023 Review Sec. 10
-alpha_s: 0.1184(8)    # FLAG 2023
-s2w: 0.23121(4)       # PDG 2023 Review Sec. 1
+GF: 1.1663787(6)e-5  # PDG 2014
+alpha_e: 0.00781616(86) # = 1/127.940(14)
+alpha_s: 0.1182(8)    # FLAG 2019
+s2w: 0.23129(5)       # PDG 2017
 
-
-Delta_alpha_e_had: 0.027572 ± 0.000359 # hep-ph/0104304 page 5
-Delta_alpha_e_lep: 0.0314977 # hep-ph/9803313 table 1
-
-# di->djnunu Wilson coefficient loop function
-
-Xt_di->djnunu: 1.462 ± 0.017 ± 0.002 # 2105.02868 Eq. (5)
 
 # CKM parameters
 
-Vus: 0.2248(6)   # FLAG 2023 Nf=2+1+1
-Vub: 3.64(16)e-3  # FLAG 2023 Nf=2+1 B->pilnu
-Vcb: 41.97(48) 1e-3 # 2310.20324
-gamma: 1.15(6)  # HFLAV 2022 B -> DK
+Vus: 0.2248(8)   # FLAG 2017 Nf=2+1+1
+Vub: 3.73(14)e-3  # FLAG 2017 Nf=2+1 B->pilnu
+Vcb: 4.221(78)e-2
+delta: 1.27(12)  # delta = gamma to excellent approximation
 
 
 # Meson decay constants
@@ -73,16 +66,16 @@ f_Upsilon(3S): 0.395(25) # using Eq.(5.45c) in 2007.01737, consistent with hep-p
 fT_Upsilon(3S): 0.395(25) # assuming equality to vector form factor. This is consistent with the non-relativistic color singlet model.
 BR_exp(Upsilon(3S)->ee): 0.0218(20) # PDG 2021
 
-f_eta_c(1S): 0.387(7) # 1312.2858
+f_eta_c(1S): 0.387(7) # 1312.2858 
 a_eta_c(1S): 0.0 # Hazard, Petrov 1607.00815
 
 f_eta_b(1S): 0.724(12) # 2101.08103
 a_eta_b(1S): 0.0 # Hazard, Petrov 1607.00815
 
-f_chi_c0(1P): 0.887 # 1510.04659 - Note, the definition of the decay constant follows 1607.00815
+f_chi_c0(1P): 0.887 # 1510.04659 - Note, the definition of the decay constant follows 1607.00815 
 a_chi_c0(1P): 0.0 # Hazard, Petrov 1607.00815
 
-f_chi_b0(1P): 0.423 # 1510.04659 - Note, the definition of the decay constant follows 1607.00815
+f_chi_b0(1P): 0.423 # 1510.04659 - Note, the definition of the decay constant follows 1607.00815 
 a_chi_b0(1P): 0.0 # Hazard, Petrov 1607.00815
 
 f_chi_b0(2P): 0.421 # 1510.04659 - Note, the definition of the decay constant follows 1607.00815
@@ -91,7 +84,7 @@ a_chi_b0(2P): 0.0 # Hazard, Petrov 1607.00815
 m_eta_b(1S): 9.3987(20) # PDG 2022
 tau_eta_b(1S): 100(50) # PDG 2022 (lower error slightly increased to have symmetric errors)
 
-tau_chi_b0(1P): 815(113) # lifetime calculated following 1510.04659
+tau_chi_b0(1P): 815(113) # lifetime calculated following 1510.04659 
 tau_chi_b0(2P): 1300(255) # calculated following 1510.04659. The final result for the lifetime has been obtained using a simple weighted average of the lifetimes estimated from BR(Upsilon(1S)+gamma) and BR(Upsilon(2S)+gamma) with errors added in quadrature.
 
 
@@ -143,9 +136,6 @@ eta_tt_Bs: 0.55
 eta_tt_K0: 0.5765(65)  # Buras:1990fn
 eta_cc_K0: 1.87(76)    # 1108.2036
 eta_ct_K0: 0.496(47)   # 1007.0684
-eta_tt_K0_ut: 0.55 +- 0.0231 # 1911.06822
-eta_ut_K0_ut: 0.402 +- 0.0053 # 1911.06822
-eta_uu_K0_ut: 1.87(76) # equal amplitudes with ut and ct unitarity
 
 
 # Parameters needed for epsilon_K
@@ -183,9 +173,9 @@ B->D IW a_T: 0 ± 0.2 # ±20% power correction to Isgur-Wise relation
 B->D BCL m0: 0
 B->D BCL m+: 0
 
-# B->K form factors (2305.06301)
-B->K BCL m0: 5.630 # m_Bs*(0+)
-B->K BCL m+: 5.415 # m_Bs*(1-)
+# B->K form factors (1509.06235)
+B->K BCL m0: 5.711 # m_Bs*(0+)
+B->K BCL m+: 5.4154 # m_Bs*(1-)
 
 # B->pi form factors
 B->pi BCL m0: 0
@@ -244,10 +234,10 @@ c4_pi+munu: 1.69(0.07)
 c2t_pi+lnu: 0
 
 # Parameters needed for K->pi form factors
-K->pi f+(0): 0.9698(17)            # FLAG 2021 Nf=2+1+1 average
+K->pi f+(0): 0.9696(15)(12)        # 1809.02827
 K->pi fT(0): 0.417(15)             # 1108.1021
 K->pi sT: 1.10(14)                 #  "
-K->pi delta_K+pi0: 0.0252(11)      # 2208.11707, in text of sec. 2
+K->pi delta_K+pi0: 0.029(4)        # 1005.2323
 K->pi ln(C): 0.1998(138)           # 1602.04113
 K->pi Lambda_+: 24.22(1.16) 1e-3   #  "
 K->pi D: 0.0209(21)                # 0903.1654 table 1
@@ -531,14 +521,10 @@ CLN lp_5(1): 0
 CLN lp_6(1): 0
 
 # Parameters for beta decays
-DeltaRV: 0.02467(27)  # Average from 2208.11707
+DeltaRV: 0.02361(38)  # Marciano/Sirlin, arXiv:hep-ph/0510099
 # one third of the Z^2alpha^3 term in table V of 0710.3181,
 # as suggested in 1411.5987
 delta_deltaRp_Z2: 0 ± 0.00004e-2
-# Systematic uncertainty on delta_NS,A (eq. 16 of Hardy:2020qwl)
-delta_deltaNS,A: 0 +- 0.033e-2
-# Systematic uncertainty on delta_NS,E (eq. 18 of Hardy:2020qwl)
-delta_deltaNS,E_QEC: 0 +- 0.008e-2
 f_n: 1.6887(1)  # Hardy & Towner
 deltaRp_n: 0.014902(2)
 Lambda->p f_1(0): -1.2247 ± 0.05  # -sqrt(3/2) +-  "few percent"
@@ -564,14 +550,3 @@ PDFmembers avg=0 replicas=1-100:
   lowest_value: 0
   highest_value: 100
   central_value: 0
-
-# Parameter for Bs->K*0mumu uncertainty inside resonant regions
-# 2209.04457, appendix B, Eq. B7, we save a relative uncertainty
-delta_BsKstarmumu: 0 ± 0.078
-
-# Updated EM corrections for Ke3 decays
-# From 2103.04843 (Table VI)
-# Uncertainties combined in quadrature, factor of 2 normalisation difference since
-# flavio used the normalisation of 1005.2323
-K0e3 delta_EM: 0.580(16)1e-2
-K+e3 delta_EM: 0.105(24)1e-2
