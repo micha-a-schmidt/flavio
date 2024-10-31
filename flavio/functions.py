@@ -55,7 +55,7 @@ def np_uncertainty(obs_name, wc_obj, *args, N=100, threads=1, **kwargs):
     - `obs_name`: name of the observable as a string
     - `wc_obj`: an instance of `flavio.WilsonCoefficients`
     - `N` (optional): number of random evaluations of the observable.
-    The relative accuracy of the uncertainty returned is given by $1/\sqrt{2N}$.
+    The relative accuracy of the uncertainty returned is given by $1/\\sqrt{2N}$.
     - `threads` (optional): if bigger than one, number of threads for parallel
     computation of the uncertainty.
 
@@ -92,7 +92,7 @@ def sm_uncertainty(obs_name, *args, N=100, threads=1, **kwargs):
 
     - `obs_name`: name of the observable as a string
     - `N` (optional): number of random evaluations of the observable.
-    The relative accuracy of the uncertainty returned is given by $1/\sqrt{2N}$.
+    The relative accuracy of the uncertainty returned is given by $1/\\sqrt{2N}$.
     - `threads` (optional): if bigger than one, number of threads for parallel
     computation of the uncertainty.
 
@@ -180,7 +180,7 @@ def sm_error_budget(obs_name, *args, N=50, **kwargs):
 
     - `obs_name`: name of the observable as a string
     - `N` (optional): number of random evaluations of the observable.
-    The relative accuracy of the uncertainties returned is given by $1/\sqrt{2N}$.
+    The relative accuracy of the uncertainties returned is given by $1/\\sqrt{2N}$.
 
     Additional arguments are passed to the observable and are necessary,
     depending on the observable (e.g. $q^2$-dependent observables).
