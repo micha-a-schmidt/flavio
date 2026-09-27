@@ -27,7 +27,7 @@ MeV = M * eV
 TeV = T * eV
 
 hbar = 1
-h = hbar / (2 * pi)
+h = (2 * pi) * hbar
 
 # Joule
 J = eV / e_SI
